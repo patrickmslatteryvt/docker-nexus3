@@ -4,6 +4,7 @@ TAG = 3.0.0-03-patch2
 TIMEOUT = 60
 
 all: build tag-latest run logs url
+staging: build tag-staging run logs url
 kill: stop rm
 
 .PHONY: clean
@@ -19,6 +20,11 @@ build: Dockerfile
 	@docker \
 		build \
 		--tag=$(USER)/$(IMAGE):$(TAG) .
+
+tag-staging:
+	@docker \
+		tag \
+		$(USER)/$(IMAGE):$(TAG) $(USER)/$(IMAGE):staging
 
 tag-latest:
 	@docker \
