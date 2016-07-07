@@ -53,6 +53,8 @@ RUN sed \
 VOLUME ${NEXUS_DATA}
 
 EXPOSE 8081
+EXPOSE 8100-8200
+
 USER nexus
 WORKDIR /opt/sonatype/nexus
 
