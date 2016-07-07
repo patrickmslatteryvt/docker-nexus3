@@ -1,6 +1,6 @@
 USER = registry.mywebgrocer.com/mywebgrocer
-IMAGE = nexus3
-TAG = 3.0.0
+IMAGE = nexus
+TAG = 3.0.0-03-patch2
 TIMEOUT = 60
 
 all: build tag-latest run logs url
