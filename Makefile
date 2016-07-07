@@ -53,4 +53,4 @@ rm:
 push:
 	@docker \
 		push \
-		$(USER)/$(IMAGE)
+		$(USER)/$(IMAGE):$(TAG)
