@@ -10,6 +10,9 @@ ENV JAVA_VERSION_MAJOR 8
 ENV JAVA_VERSION_MINOR 91
 ENV JAVA_VERSION_BUILD 14
 
+# User creation should always be before any other task
+RUN useradd -r -u 200 -m -c "nexus role account" -d ${NEXUS_DATA} -s /bin/false nexus
+
 RUN yum install -y \
   curl tar \
   && yum clean all
@@ -46,8 +49,6 @@ RUN sed \
     -e "s|karaf.data=data|karaf.data=${NEXUS_DATA}|g" \
     -e "s|java.io.tmpdir=data/tmp|java.io.tmpdir=${NEXUS_DATA}/tmp|g" \
     -i /opt/sonatype/nexus/bin/nexus.vmoptions
-
-RUN useradd -r -u 200 -m -c "nexus role account" -d ${NEXUS_DATA} -s /bin/false nexus
 
 VOLUME ${NEXUS_DATA}
 
